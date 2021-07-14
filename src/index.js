@@ -65,6 +65,7 @@ categories.forEach((majorCategoryName) => {
 });
 
 function operate(majorCategoryName) {
+  logger.logStr = "";
   let admittedCount = 0; //已经录取的人数
   let notiaojicount = 0; //因不接受调剂而未被录取的人数
 
@@ -126,7 +127,7 @@ function operate(majorCategoryName) {
       const major = majors.find(({ title }) => title === majorName);
 
       if (!major) {
-        throw new Error(`专业不存在：${key} ${majorName}不存在`);
+        throw new Error(`专业不存在： ${majorName}不存在`);
       }
 
       const { headCount, occupiedCount, occupiedCandidates } = major;

@@ -3,6 +3,7 @@ let logStr = "";
 
 const CANDIDITE_MAPPER= config.tableFieldMapper.CANDIDATE
 const MAJOR_MAPPER= config.tableFieldMapper.MAJOR
+const CANDIDATES_EXCLUDEDE_FIELDS=config.fieldsToExclude.TABLE
 
 exports.logStr = logStr;
 
@@ -15,20 +16,18 @@ exports.logMajorCategory =(majors)=>{
 }
 
 exports.logCandidates = (candidates) => {
-  const fieldsToExclude = config.fieldsToExclude.TABLE;
-
+  const fieldsToExclude = CANDIDATES_EXCLUDEDE_FIELDS;
   const keys = Object.keys(candidates[0]).filter(
     (key) => !fieldsToExclude.includes(key)
   );
 
-  
   exports.logStr += `\n|${keys.join("|")}|\n|${keys.map((e) => "-").join("|")}|`;
 
   candidates.forEach((candidate) => {
-    exports.logStr += `\n|${keys.map((key) => candidate[key]).join("|")}|`;
-    
+    exports.logStr += `\n|${keys.map((key) => candidate[key]).join("|")}|`;    
   });
 };
+
 exports.logCandidate = (candidate, num, isRedistribute) => {
   const fieldsToExclude = config.fieldsToExclude.TABLE;
 
